@@ -1,7 +1,6 @@
-import { UploadStream } from "cloudinary";
-import Message from "../models/Message.model";
-import User from "../models/User.model";
-import { userSocketMap } from "../server";
+import Message from "../models/Message.model.js";
+import User from "../models/User.model.js";
+import { userSocketMap } from "../server.js";
 
 export const getUsersForSidebar = async (req, res) => {
   try {
