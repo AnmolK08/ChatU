@@ -41,7 +41,7 @@ const RightSideBar = () => {
 
         <div className="px-5 text-xs">
           <p>Media</p>
-          <div className="mt-2 max-h-[200px] overflow-y-scroll grid grid-cols-2 gap-4 opacity-80">
+          <div className="mt-2 max-h-[300px] overflow-y-scroll grid grid-cols-2 gap-4 opacity-80">
             {msgImages.map((url, idx) => (
               <div
                 key={idx}

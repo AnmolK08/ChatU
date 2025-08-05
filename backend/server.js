@@ -45,6 +45,6 @@ app.use("/api/v1/auth", userRouter);
 app.use("/api/v1/messages", messageRouter);
 await connectDB();
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

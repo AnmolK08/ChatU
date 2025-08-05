@@ -1,6 +1,6 @@
 import Message from "../models/Message.model.js";
 import User from "../models/User.model.js";
-import { userSocketMap } from "../server.js";
+import { io, userSocketMap } from "../server.js";
 import cloudinary from "../config/cloudinary.js"
 
 export const getUsersForSidebar = async (req, res) => {
@@ -25,7 +25,7 @@ export const getUsersForSidebar = async (req, res) => {
 
     res.json({ success: true, users: filteredUsers, unseenMessages });
   } catch (error) {
-    console.log(error.mssage);
+    console.log(error.message);
     res.json({ success: false, message: error.message });
   }
 };
@@ -46,7 +46,7 @@ export const getMessages = async (req, res) => {
 
     res.json({ success: true, messages });
   } catch (error) {
-    console.log(error.mssage);
+    console.log(error.message);
     res.json({ success: false, message: error.message });
   }
 };
@@ -58,7 +58,7 @@ export const markMessageAsSeen = async (req, res) => {
 
     res.json({ success: true });
   } catch (error) {
-    console.log(error.mssage);
+    console.log(error.message);
     res.json({ success: false, message: error.message });
   }
 };
@@ -90,7 +90,7 @@ export const sendMessage = async (req, res) => {
 
     res.json({ success: true, newMessage });
   } catch (error) {
-    console.log(error.mssage);
+    console.log(error.message);
     res.json({ success: false, message: error.message });
   }
 };

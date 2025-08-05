@@ -43,7 +43,7 @@ const SideBar = () => {
             <img
               src={assets.menu_icon}
               alt="Menu"
-              className="max-h-5 cursor pointer"
+              className="max-h-5 cursor-pointer"
             />
             <div className="absolute top-full right-0 z-20 w-32 p-5 rounded-md bg-[#282142] border border-gray-600 text-gray-100 hidden group-hover:block">
               <p
@@ -54,9 +54,7 @@ const SideBar = () => {
               </p>
               <hr className="my-2 border-t border-gray-500" />
               <p
-                onClick={() => {
-                  logout;
-                }}
+                onClick={logout}
                 className="cursor-pointer text-sm"
               >
                 Logout
