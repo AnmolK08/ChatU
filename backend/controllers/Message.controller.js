@@ -1,6 +1,7 @@
 import Message from "../models/Message.model.js";
 import User from "../models/User.model.js";
 import { userSocketMap } from "../server.js";
+import cloudinary from "../config/cloudinary.js"
 
 export const getUsersForSidebar = async (req, res) => {
   try {
@@ -31,7 +32,7 @@ export const getUsersForSidebar = async (req, res) => {
 
 export const getMessages = async (req, res) => {
   try {
-    const { id : selectedUserId } = rq.params;
+    const { id : selectedUserId } = req.params;
     const myId = req.user._id;
 
     const messages = await Message.find({
@@ -71,8 +72,8 @@ export const sendMessage = async (req, res) => {
     let imageUrl;
 
     if (image) {
-      const uploadR = await connectCloudinary.uploader.upload(image);
-      imageUrl = uploadR.secure.url;
+      const uploadR = await cloudinary.uploader.upload(image);
+      imageUrl = uploadR.secure_url;
     }
 
     const newMessage = await Message.create({

@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const { data } = await axios.get("/api/auth/check");
+      const { data } = await axios.get("/api/v1/auth/is-auth");
       if (data.success) {
         setAuthUser(data.user);
         connectSocket(data.user);
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (state, credentials) => {
     try {
-      const { data } = await axios.post(`api/auth/${state}`, credentials);
+      const { data } = await axios.post(`api/v1/auth/${state}`, credentials);
       if (data.success) {
         setAuthUser(data.userData);
         connectSocket(data.userData);
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
 
   const updateProfile = async (body) => {
     try {
-      const { data } = await axios.put("/api/auth/update-profile", body);
+      const { data } = await axios.put("/api/v1/auth/update-profile", body);
       if (data.success) {
         setAuthUser(data.user);
         toast.success(data.message);
@@ -63,8 +63,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const connectSocket = (userData) => {
-    if (!userData || socket?.conncted) return;
-
+    if (!userData || socket?.connected) return;
     const newSocket = io(backendUrl, {
       query: {
         userId: userData._id,
@@ -72,7 +71,6 @@ export const AuthProvider = ({ children }) => {
     });
     newSocket.connect();
     setSocket(newSocket);
-
     newSocket.on("getOnlineUsers", (userIds) => {
       setOnlineUsers(userIds);
     });
@@ -83,7 +81,8 @@ export const AuthProvider = ({ children }) => {
       axios.defaults.headers.common["token"] = token;
     }
     checkAuth();
-  });
+    console.log(authUser);
+  }, []);
 
   const value = {
     axios,

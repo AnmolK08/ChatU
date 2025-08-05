@@ -29,6 +29,7 @@ export const ChatProvider = ({ children }) => {
     try {
       const { data } = await axios.get(`/api/v1/messages/${userId}`);
       if (data.success) {
+        console.log(messages);
         setMessages(data.messages);
       }
     } catch (error) {

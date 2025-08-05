@@ -5,11 +5,11 @@ import { AuthContext } from '../../context/AuthContext';
 
 const ProfilePage = () => {
 
+  const { authUser , updateProfile } = useContext(AuthContext);
   const [selectedImg, setSelectedImg] = useState(null);
   const navigate = useNavigate();
   const [name, setName] = useState(authUser.fullName);
   const [bio, setBio] = useState(authUser.bio);
-  const { authUser , updateProfile } = useContext(AuthContext);
 
   const handleSubmit = async (e)=>{
     e.preventDefault();

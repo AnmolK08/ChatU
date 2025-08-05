@@ -15,7 +15,7 @@ const SideBar = () => {
     unseenMessages,
     setUnseenMessages,
   } = useContext(ChatContext);
-  
+
   const { logout, onlineUsers } = useContext(AuthContext);
   const [input, setInput] = useState(false);
 
@@ -38,7 +38,7 @@ const SideBar = () => {
     >
       <div className="pb-5">
         <div className="flex justify-between items-center">
-          <img src={assets.logo} alt="logo" className="max-w-40" />
+          <img src={assets.logo_icon} alt="logo" className="max-w-7" />
           <div className="relative py-2 group">
             <img
               src={assets.menu_icon}

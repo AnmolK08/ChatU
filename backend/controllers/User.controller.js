@@ -4,10 +4,10 @@ import User from "../models/User.model.js";
 import bcrypt from "bcrypt";
 
 export const signup = async (req, res) => {
-  const { name, password, email, bio } = req.body;
+  const { fullName, password, email, bio } = req.body;
 
   try {
-    if (!name || !password || !email || !bio) {
+    if (!fullName || !password || !email || !bio) {
       return res.json({ success: false, message: "Missing Details" });
     }
 
@@ -21,7 +21,7 @@ export const signup = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const user = await User.create({
-      name,
+      fullName,
       email,
       password: hashedPassword,
       bio,
@@ -56,6 +56,7 @@ export const login = async (req, res) => {
 
     res.json({
       success: true,
+      userData: user,
       token,
       message: "Login successfully",
     });
@@ -71,7 +72,7 @@ export const checkAuth = (req, res) => {
 
 export const updateProfile = async (req, res) => {
   try {
-    const { profilePic, bio, name } = req.body;
+    const { profilePic, bio, fullName } = req.body;
 
     const userId = req.user._id;
     let updatedUser;
@@ -79,7 +80,7 @@ export const updateProfile = async (req, res) => {
     if (!profilePic) {
       updatedUser = await User.findByIdAndUpdate(
         userId,
-        { bio, name },
+        { bio, fullName },
         { new: true }
       );
     } else {
@@ -87,7 +88,7 @@ export const updateProfile = async (req, res) => {
 
       updatedUser = await User.findByIdAndUpdate(
         userId,
-        { profilePic: upload.secure_url, bio, name },
+        { profilePic: upload.secure_url, bio, fullName },
         { new: true }
       );
     }
