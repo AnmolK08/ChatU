@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
+  import { toast } from 'react-toastify';
 import { io } from "socket.io-client";
 import { AuthContext } from "./AuthContext";
 
